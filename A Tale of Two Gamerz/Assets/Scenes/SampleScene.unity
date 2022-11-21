@@ -8769,7 +8769,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 15
   rb: {fileID: 1643290855}
-  timeRemaining: 10
+  timeRemaining: 0.1
   timerIsRunning: 0
 --- !u!50 &1643290855
 Rigidbody2D:
