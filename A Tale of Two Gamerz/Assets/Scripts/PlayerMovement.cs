@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     private Vector2 MoveDirection;
     private bool Dashing;
-    public float timeRemaining = 10;
+    public float timeRemaining = 0.1f;
     public bool timerIsRunning = false;
 
     private void Start()
@@ -25,9 +25,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            MoveSpeed = 30;
+            MoveSpeed = 50;
 
-            Debug.Log(MoveSpeed);
+            timerIsRunning = true;
+            timeRemaining = 0.1f;
+
+            Debug.Log(timeRemaining);
         }
 
         if (timerIsRunning)
@@ -40,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 timeRemaining = 0;
                 timerIsRunning = false;
+                MoveSpeed = 15;
             }
         }
 
@@ -62,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        Debug.Log("Current Speed :"+MoveSpeed);
+        //Debug.Log("Current Speed :"+MoveSpeed);
         rb.velocity = new Vector3(MoveDirection.x * MoveSpeed, MoveDirection.y * MoveSpeed);
         
     }
