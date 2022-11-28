@@ -59,7 +59,7 @@ public class EnemyBehavior : MonoBehaviour
         if (target)
         {
             Range = Vector3.Distance(transform.position, player.transform.position);
-            Debug.Log("Player distance from enemy :" + Range);
+            //Debug.Log("Player distance from enemy :" + Range);
 
             Vector3 direction = player.transform.position - transform.position;
             direction.Normalize();

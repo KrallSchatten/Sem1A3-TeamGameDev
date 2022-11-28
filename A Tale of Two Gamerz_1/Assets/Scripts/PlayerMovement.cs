@@ -11,26 +11,48 @@ public class PlayerMovement : MonoBehaviour
     private bool Dashing;
     public float timeRemaining = 0.1f;
     public bool timerIsRunning = false;
+    private bool CanDash;
+    public float timeRemaining2 = 0.5f;
+    public bool timerIsRunning2 = false;
 
     private void Start()
     {
         // Starts the timer automatically
         timerIsRunning = true;
+        timerIsRunning2 = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         ProcessInputs();
-
-        if (Input.GetButtonDown("Jump"))
+       
+        if (CanDash == true)
         {
-            MoveSpeed = 50;
+            if (Input.GetButtonDown("Jump"))
+            {
+                MoveSpeed = 50;
 
-            timerIsRunning = true;
-            timeRemaining = 0.1f;
+                timerIsRunning = true;
+                timeRemaining = 0.1f;
+                timerIsRunning2 = true;
+                timeRemaining2 = 0.25f;
+            }
+        }
 
-            Debug.Log(timeRemaining);
+        if (timerIsRunning2)
+        {
+            if (timeRemaining2 > 0)
+            {
+                timeRemaining2 -= Time.deltaTime;
+                CanDash = false;
+            }
+            else
+            {
+                timeRemaining2 = 0;
+                timerIsRunning2 = false;
+                CanDash = true;
+            }
         }
 
         if (timerIsRunning)
